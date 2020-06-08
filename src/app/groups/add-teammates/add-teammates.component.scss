@@ -4,3 +4,20 @@ ion-searchbar {
     --clear-button-color: #008080;
     --cancel-button-color: #008080;
 }
+
+.addedTeammates {
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    ion-thumbnail {
+        margin-right: 10px;
+    }
+}
+
+ion-thumbnail {
+    --border-radius: 10px;
+}
+
+ion-icon {
+    font-size: 30px;
+}

@@ -1,58 +1,31 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-searchbar showCancelButton="always"></ion-searchbar>
+    <ion-buttons slot="start">
+      <ion-icon name="return-up-back-outline"></ion-icon>
+    </ion-buttons>
+    <ion-title>Select teammates</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Add teammates</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-item>
+  <ion-item class="addedTeammates" lines="none" *ngIf="addedTeammates.length > 0">
+    <ion-thumbnail *ngFor="let teammate of addedTeammates">
+      <img [src]="teammate.profilePicture.url | apiEndpoint">
+    </ion-thumbnail>
+  </ion-item>
+  <ion-searchbar></ion-searchbar>
+  <ion-item *ngFor="let teammate of (teammates$ | async)?.users">
     <ion-thumbnail slot="start">
-      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==">
+      <img [src]="teammate.profilePicture.url | apiEndpoint">
     </ion-thumbnail>
     <ion-label>
-      <h2>Predrag Zaric</h2>
+      <h2>{{teammate.firstName}} {{teammate.lastName}}</h2>
     </ion-label>
-    <ion-button fill="outline" slot="end" color="tertiary">Add</ion-button>
+    <ion-button fill="outline" slot="end" color="tertiary" (click)="addTeammate(teammate)">Add</ion-button>
   </ion-item>
-  <ion-item>
-    <ion-thumbnail slot="start">
-      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==">
-    </ion-thumbnail>
-    <ion-label>
-      <h2>Ivan Janjic</h2>
-    </ion-label>
-    <ion-button fill="outline" slot="end" color="tertiary">Add</ion-button>
-  </ion-item>
-  <ion-item>
-    <ion-thumbnail slot="start">
-      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==">
-    </ion-thumbnail>
-    <ion-label>
-      <h2>Darko Arsic</h2>
-    </ion-label>
-    <ion-button fill="outline" slot="end" color="tertiary">Add</ion-button>
-  </ion-item>
-  <ion-item>
-    <ion-thumbnail slot="start">
-      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==">
-    </ion-thumbnail>
-    <ion-label>
-      <h2>Stefan Grujic</h2>
-    </ion-label>
-    <ion-button fill="outline" slot="end" color="tertiary">Add</ion-button>
-  </ion-item>
-  <ion-item>
-    <ion-thumbnail slot="start">
-      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==">
-    </ion-thumbnail>
-    <ion-label>
-      <h2>Marko Despotovic</h2>
-    </ion-label>
-    <ion-button fill="outline" slot="end" color="tertiary">Add</ion-button>
-  </ion-item>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="tertiary" (click)="addTeammates()">
+      <ion-icon name="arrow-forward-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

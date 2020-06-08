@@ -15,32 +15,45 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-10">
-        <form>
+        <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
           <ion-item>
+
             <ion-label>Location</ion-label>
-            <ion-select mode="ios" interface="action-sheet" placeholder="Select">
-              <ion-select-option value="1">Corn, Grčića Milenka 74, Beograd, Serbia</ion-select-option>
-              <ion-select-option value="2">Maximum Effect, Kumodraška 155, Beograd</ion-select-option>
+            <ion-select
+                    mode="ios"
+                    interface="action-sheet"
+                    placeholder="Select"
+                    formControlName="location">
+              <ion-select-option *ngFor="let location of locations$ | async"  [value]="location.id">
+                  {{location.name}}, {{location.streetName}} {{location.streetNumber}}
+              </ion-select-option>
             </ion-select>
           </ion-item>
           <ion-item>
             <ion-label>Day of week</ion-label>
-            <ion-select mode="ios" interface="action-sheet" placeholder="Select">
-              <ion-select-option value="1">Monday</ion-select-option>
-              <ion-select-option value="2">Tuesday</ion-select-option>
-              <ion-select-option value="3">Wednesday</ion-select-option>
-              <ion-select-option value="4">Thursday</ion-select-option>
-              <ion-select-option value="5">Friday</ion-select-option>
-              <ion-select-option value="6">Saturday</ion-select-option>
-              <ion-select-option value="7">Sunday</ion-select-option>
+            <ion-select
+                    mode="ios"
+                    interface="action-sheet"
+                    placeholder="Select"
+                    formControlName="dayOfWeek">
+              <ion-select-option *ngFor="let day of daysOfWeek" [value]="day">{{day}}</ion-select-option>
             </ion-select>
           </ion-item>
           <ion-item>
             <ion-label>HH:mm</ion-label>
-            <ion-datetime displayFormat="HH:mm"></ion-datetime>
+            <ion-datetime displayFormat="HH:mm" formControlName="time"></ion-datetime>
+          </ion-item>
+          <ion-item *ngFor="let teammate of addedTeammates">
+            <ion-thumbnail slot="start">
+              <img [src]="teammate.profilePicture.url | apiEndpoint">
+            </ion-thumbnail>
+            <ion-label>
+              <h2>{{teammate.firstName}} {{teammate.lastName}}</h2>
+            </ion-label>
+            <ion-button fill="outline" slot="end" color="danger" (click)="removeTeammate(teammate)">Remove</ion-button>
           </ion-item>
           <ion-button expand="full" color="tertiary" shape="round" routerLink="create/add-teammates">Add teammates</ion-button>
-          <ion-button expand="full" color="danger" shape="round">Create</ion-button>
+          <ion-button expand="full" color="danger" shape="round" type="submit">Create</ion-button>
         </form>
       </div>
     </div>
