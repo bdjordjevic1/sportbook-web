@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
-import { ValidationMessage } from '../model/validation-message.model';
+import { ValidationError } from '../model/validation-error.model';
 import { ErrorMessageService } from '../service/error-message.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { ErrorMessageService } from '../service/error-message.service';
 export class SbErrorComponent implements OnInit {
   @Input() fieldName: string;
   @Input() field: AbstractControl;
-  validationMessages$: Observable<ValidationMessage[]>;
+  validationMessages$: Observable<ValidationError>;
 
   constructor(private errorMessageService: ErrorMessageService) {}
 

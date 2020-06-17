@@ -1,17 +1,17 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, Input } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ValidationMessage } from '../model/validation-message.model';
+import { ValidationError } from '../model/validation-error.model';
 
 @Injectable({ providedIn: 'root' })
 export class ErrorMessageService {
   constructor(private http: HttpClient) {}
 
-  getValidationMessages(fieldName: string): Observable<ValidationMessage[]> {
-    return this.http.get('assets/errors.json').pipe(
-      map((errors) => {
-        return errors[fieldName];
+  getValidationMessages(fieldName: string): Observable<ValidationError> {
+    return this.http.get<ValidationError[]>('assets/errors.json').pipe(
+      map((validationErrors: ValidationError[]) => {
+        return validationErrors.find((validationError) => validationError.fieldName === fieldName);
       })
     );
   }
