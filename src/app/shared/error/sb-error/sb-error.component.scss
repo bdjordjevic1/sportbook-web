@@ -1,0 +1,13 @@
+div.error-msg {
+    color: #eb445a;
+    text-align: left;
+    vertical-align: center;
+
+    span {
+        margin-left: 3px;
+    }
+
+    ion-icon {
+        vertical-align: text-top;
+    }
+}

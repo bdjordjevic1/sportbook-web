@@ -1,0 +1,28 @@
+ion-searchbar {
+    --background: none;
+}
+
+.addedTeammates {
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    ion-thumbnail {
+        margin-right: 10px;
+    }
+}
+
+.sb-searchbar {
+    border-bottom: solid 1px lightgray;
+    border-top: solid 1px lightgray;
+    //padding: 0 0;
+    height: 40px;
+    margin-bottom: 5px;
+}
+
+ion-thumbnail {
+    --border-radius: 10px;
+}
+
+ion-icon {
+    font-size: 30px;
+}

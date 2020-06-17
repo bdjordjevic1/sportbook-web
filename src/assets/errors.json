@@ -1,0 +1,9 @@
+{
+  "email": [
+    { "type": "required", "message": "Email is required" },
+    { "type": "email", "message": "Provided email is not valid" }
+  ],
+  "password": [
+    { "type": "required", "message": "Password is required" }
+  ]
+}

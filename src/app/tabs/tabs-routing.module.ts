@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuardService } from '../shared/authentication/auth-guard.service';
 import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
   {
-    path: 'tabs',
+    path: '',
     component: TabsPage,
     children: [
       {
         path: 'groups',
-        loadChildren: () => import('../groups/groups.module').then((m) => m.GroupsModule),
+        loadChildren: () => import('../events/events.module').then((m) => m.EventsModule),
       },
       {
         path: 'tab2',
@@ -25,6 +26,7 @@ const routes: Routes = [
         pathMatch: 'full',
       },
     ],
+    canActivate: [AuthGuardService],
   },
   {
     path: '',

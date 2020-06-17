@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text="" color="tertiary"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Select teammates</ion-title>
+        <ion-buttons slot="end">
+            <ion-icon
+                    name="checkmark-sharp"
+                    color="tertiary"
+                    (click)="addTeammates()"></ion-icon>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-item class="addedTeammates" lines="none" *ngIf="addedTeammates.length > 0">
+        <ion-thumbnail *ngFor="let teammate of addedTeammates">
+            <img [src]="teammate.profilePicture.url | apiEndpoint">
+        </ion-thumbnail>
+    </ion-item>
+    <ion-searchbar
+            class="sb-searchbar"
+            placeholder="Enter name"
+    ></ion-searchbar>
+    <ion-item *ngFor="let teammate of (teammates$ | async)?.users">
+        <ion-thumbnail slot="start">
+            <img [src]="teammate.profilePicture.url | apiEndpoint">
+        </ion-thumbnail>
+        <ion-label>
+            <h2>{{teammate.firstName}} {{teammate.lastName}}</h2>
+        </ion-label>
+        <ion-button fill="outline" slot="end" color="tertiary" (click)="addTeammate(teammate)">Add</ion-button>
+    </ion-item>
+</ion-content>

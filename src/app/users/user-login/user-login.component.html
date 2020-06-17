@@ -1,0 +1,51 @@
+<ion-content class="login">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-item lines="none">
+                        <h2>Login</h2>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input
+                                name="email"
+                                type="email"
+                                placeholder="Email"
+                                formControlName="email"></ion-input>
+                    </ion-item>
+                    <app-sb-error
+                            *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched"
+                            [field]="loginForm.get('email')"
+                            fieldName="email">
+                    </app-sb-error>
+                    <ion-item>
+                        <ion-input
+                                name="password"
+                                type="password"
+                                placeholder="Password"
+                                formControlName="password"></ion-input>
+                    </ion-item>
+                    <app-sb-error
+                            *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched"
+                            [field]="loginForm.get('password')"
+                            fieldName="password">
+                    </app-sb-error>
+                    <ion-item lines="none" class="ion-text-right">
+                        <a [routerLink]="['../forgot-password']">Forgot your password?</a>
+                    </ion-item>
+                    <ion-button expand="full" color="tertiary" shape="round" type="submit">Login</ion-button>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-text color="medium">or</ion-text>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-button expand="full" color="danger" shape="round" type="button" (click)="onRegister()">Register</ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
+</ion-content>
