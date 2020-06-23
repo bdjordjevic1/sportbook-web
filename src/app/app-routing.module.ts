@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuardService } from './shared/authentication/auth-guard.service';
 
 const routes: Routes = [
   {
-    path: 'tabs',
-    loadChildren: () => import('./tabs/tabs.module').then((m) => m.TabsPageModule),
+    path: 'events',
+    loadChildren: () => import('./events/events.module').then((m) => m.EventsModule),
+    canActivate: [AuthGuardService],
   },
   {
     path: '',

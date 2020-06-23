@@ -1,3 +1,18 @@
 <ion-app>
   <ion-router-outlet></ion-router-outlet>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button [routerLink]="['events']" routerLinkActive #timer="routerLinkActive">
+        <ion-icon name="{{timer.isActive === true ? 'timer' : 'timer-outline'}}" color="tertiary"></ion-icon>
+      </ion-tab-button>
+
+      <ion-tab-button tab="create" routerLinkActive #people="routerLinkActive">
+        <ion-icon name="{{people.isActive === true ? 'people' : 'people-outline'}}" color="tertiary"></ion-icon>
+      </ion-tab-button>
+
+      <ion-tab-button [routerLink]="['account']" routerLinkActive #fingerPrint="routerLinkActive">
+        <ion-icon name="{{fingerPrint.isActive === true ? 'finger-print' : 'finger-print-outline'}}" color="tertiary"></ion-icon>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-app>

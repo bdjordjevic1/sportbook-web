@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button text="" color="light"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Sign up</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="register">
+  <div class="alert alert-danger sb-alert" role="alert" *ngIf="errorMessage">
+    {{errorMessage}}
+  </div>
+  <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="none">
+            <h2>Create an account</h2>
+          </ion-item>
+          <ion-item>
+            <ion-input
+                    name="firstName"
+                    type="text"
+                    placeholder="First name"
+                    formControlName="firstName">
+            </ion-input>
+          </ion-item>
+          <app-sb-error
+                  *ngIf="signUpForm.get('firstName').invalid && signUpForm.get('firstName').touched"
+                  [field]="signUpForm.get('firstName')"
+                  fieldName="firstName">
+          </app-sb-error>
+          <ion-item>
+            <ion-input
+                    name="lastName"
+                    type="text"
+                    placeholder="Last name"
+                    formControlName="lastName">
+            </ion-input>
+          </ion-item>
+          <app-sb-error
+                  *ngIf="signUpForm.get('lastName').invalid && signUpForm.get('lastName').touched"
+                  [field]="signUpForm.get('lastName')"
+                  fieldName="lastName">
+          </app-sb-error>
+          <ion-item>
+            <ion-input
+                    name="email"
+                    type="email"
+                    placeholder="Email"
+                    formControlName="email">
+            </ion-input>
+          </ion-item>
+          <app-sb-error
+                  *ngIf="signUpForm.get('email').invalid && signUpForm.get('email').touched"
+                  [field]="signUpForm.get('email')"
+                  fieldName="email">
+          </app-sb-error>
+          <ion-item>
+            <ion-input
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                    formControlName="password">
+            </ion-input>
+          </ion-item>
+          <app-sb-error
+                  *ngIf="signUpForm.get('password').invalid && signUpForm.get('password').touched"
+                  [field]="signUpForm.get('password')"
+                  fieldName="password">
+          </app-sb-error>
+          <ion-item>
+            <ion-input
+                    name="password"
+                    type="password"
+                    placeholder="Confirm password"
+                    formControlName="confirmPassword">
+            </ion-input>
+          </ion-item>
+          <app-sb-error
+                  *ngIf="signUpForm.get('confirmPassword').invalid && signUpForm.get('confirmPassword').touched"
+                  [field]="signUpForm.get('confirmPassword')"
+                  fieldName="confirmPassword">
+          </app-sb-error>
+          <ion-button
+                  class="ion-margin-top"
+                  expand="full"
+                  color="danger"
+                  shape="round" type="submit">Sign up</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

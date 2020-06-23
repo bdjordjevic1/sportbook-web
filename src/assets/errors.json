@@ -13,11 +13,42 @@
     ]
   },
   {
+    "fieldName": "firstName",
+    "errorMessages": [
+      {
+        "type": "required",
+        "message": "First name is required"
+      }
+    ]
+  },
+  {
+    "fieldName": "lastName",
+    "errorMessages": [
+      {
+        "type": "required",
+        "message": "Last name is required"
+      }
+    ]
+  },
+  {
     "fieldName": "password",
     "errorMessages": [
       {
         "type": "required",
         "message": "Password is required"
+      }
+    ]
+  },
+  {
+    "fieldName": "confirmPassword",
+    "errorMessages": [
+      {
+        "type": "required",
+        "message": "Password has to be confirmed"
+      },
+      {
+        "type": "matchingPasswords",
+        "message": "Passwords do not match"
       }
     ]
   }

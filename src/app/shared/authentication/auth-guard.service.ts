@@ -14,6 +14,7 @@ export class AuthGuardService implements CanActivate {
     if (this.authService.isLoggedIn()) {
       return of(true);
     }
+    this.authService.logoutWhenSessionExpired();
     return this.router.createUrlTree(['/login']);
   }
 }

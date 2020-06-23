@@ -8,9 +8,10 @@ import { AddTeammatesComponent } from './add-teammates/add-teammates.component';
 import { EventAddComponent } from './event-add/event-add.component';
 import { EventsListComponent } from './events-list/events-list.component';
 import { EventsRoutingModule } from './events-routing.module';
+import { EventsTabComponent } from './events-tab/events-tab.component';
 
 @NgModule({
   imports: [IonicModule, CommonModule, ExploreContainerComponentModule, EventsRoutingModule, SharedModule],
-  declarations: [AddTeammatesComponent, EventAddComponent, EventsListComponent],
+  declarations: [AddTeammatesComponent, EventAddComponent, EventsListComponent, EventsTabComponent],
 })
 export class EventsModule {}

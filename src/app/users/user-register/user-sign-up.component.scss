@@ -1,23 +1,12 @@
-ion-col {
-    text-align: center;
+ion-header.custom-header {
+    background-color: #eb445a;
+}
 
+ion-col {
     p {
         margin-top: 0;
         margin-bottom: 0;
     }
-}
-
-h2 {
-    color: #222428;
-}
-
-ion-text {
-    text-align: center;
-}
-
-a {
-    text-decoration: none;
-    color: #008080;
 }
 
 ion-item.ion-invalid.ion-touched {
@@ -28,3 +17,4 @@ ion-item.ion-invalid.ion-touched {
     border-radius: 0;
     margin-bottom: 0;
 }
+

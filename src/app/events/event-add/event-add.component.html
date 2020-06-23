@@ -1,20 +1,17 @@
-<ion-header [translucent]="true">
+<ion-header>
     <ion-toolbar>
-        <ion-title>
-            Create group
-        </ion-title>
+        <ion-buttons slot="start">
+            <ion-icon name="chevron-back-outline" color="tertiary" size="large" [routerLink]="['../']"></ion-icon>
+        </ion-buttons>
+        <ion-title color="tertiary">sportbook</ion-title>
     </ion-toolbar>
 </ion-header>
-
 <ion-content [fullscreen]="true">
-    <ion-header collapse="condense">
-        <ion-toolbar>
-            <ion-title size="large">Create group</ion-title>
-        </ion-toolbar>
-    </ion-header>
     <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
         <ion-item>
-
+            <h2>Create event</h2>
+        </ion-item>
+        <ion-item>
             <ion-label>Location</ion-label>
             <ion-select
                     mode="ios"
@@ -49,12 +46,7 @@
             </ion-label>
             <ion-button fill="outline" slot="end" color="danger" (click)="removeTeammate(teammate)">Remove</ion-button>
         </ion-item>
-        <ion-button expand="full" color="tertiary" shape="round" routerLink="create/add-teammates">Add teammates</ion-button>
+        <ion-button expand="full" color="tertiary" shape="round" [routerLink]="['../add-teammates']">Add teammates</ion-button>
         <ion-button expand="full" color="danger" shape="round" type="submit">Create</ion-button>
     </form>
-    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-        <ion-fab-button color="tertiary">
-            <ion-icon name="add"></ion-icon>
-        </ion-fab-button>
-    </ion-fab>
 </ion-content>
