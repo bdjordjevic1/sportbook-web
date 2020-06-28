@@ -1,16 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import * as moment from 'moment';
+import { BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import * as moment from 'moment';
+import { NotificationType } from '../notification/model/notification-type.enum';
+import { NotificationHandler } from '../notification/service/notification-handler.service';
+import { ApiResponse } from './dto/ApiResponse';
 import { AuthResponse } from './dto/AuthResponse';
 import { SignUpRequest } from './dto/SignUpRequest';
-import { ApiResponse } from './dto/ApiResponse';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private notificationHandler: NotificationHandler) {}
   isSignUpSuccessful = new BehaviorSubject(false);
   isSessionExpired = new BehaviorSubject(false);
 
@@ -25,7 +27,7 @@ export class AuthenticationService {
   }
 
   signUpSuccess() {
-    this.isSignUpSuccessful.next(true);
+    this.notificationHandler.pushNotification('form.signUp.success', NotificationType.SUCCESS);
   }
 
   setSession(loginResponse: AuthResponse) {
@@ -41,7 +43,7 @@ export class AuthenticationService {
   logoutWhenSessionExpired() {
     localStorage.removeItem('access_token');
     localStorage.removeItem('expires_at');
-    this.isSessionExpired.next(true);
+    this.notificationHandler.pushNotification('session.expired', NotificationType.WARNING);
   }
 
   logout() {

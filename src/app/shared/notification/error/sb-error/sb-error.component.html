@@ -1,4 +1,4 @@
-<ng-container *ngFor="let errorMessage of (validationMessages$ | async)?.errorMessages">
+<ng-container *ngFor="let errorMessage of validationMessages?.errorMessages">
     <div class="error-msg" *ngIf="field.hasError(errorMessage.type)">
         <ion-icon name="information-circle-outline" color="danger"></ion-icon>
         <span class="help-block">{{errorMessage.message}}</span>

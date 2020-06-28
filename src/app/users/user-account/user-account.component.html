@@ -1,0 +1,63 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title color="tertiary">My account</ion-title>
+    </ion-toolbar>
+</ion-header>
+<app-notification-container></app-notification-container>
+<ion-content class="account">
+    <div class="profile-picture text-center">
+        <img src="https://static01.nyt.com/images/2020/05/16/business/16JORDAN-01sub/16JORDAN-01sub-mediumSquareAt3X.jpg"
+             alt="Jordan stares"
+             class="img-fluid rounded-circle"
+             width="50%">
+    </div>
+    <div class="text-center">
+      <a href="#">Change profile picture</a>
+    </div>
+    <form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-input
+                                name="firstName"
+                                type="text"
+                                placeholder="First name"
+                                formControlName="firstName">
+                        </ion-input>
+                    </ion-item>
+                    <app-sb-error
+                            *ngIf="accountForm.get('firstName').invalid && accountForm.get('firstName').touched"
+                            [field]="accountForm.get('firstName')"
+                            fieldName="firstName">
+                    </app-sb-error>
+                    <ion-item>
+                        <ion-input
+                                name="lastName"
+                                type="text"
+                                placeholder="Last name"
+                                formControlName="lastName">
+                        </ion-input>
+                    </ion-item>
+                    <app-sb-error
+                            *ngIf="accountForm.get('lastName').invalid && accountForm.get('lastName').touched"
+                            [field]="accountForm.get('lastName')"
+                            fieldName="lastName">
+                    </app-sb-error>
+                    <ion-button
+                            class="ion-margin-top"
+                            expand="full"
+                            color="tertiary"
+                            shape="round" type="submit">Update profile</ion-button>
+                    <ion-button
+                            class="ion-margin-top"
+                            expand="full"
+                            color="danger"
+                            shape="round"
+                            type="submit"
+                            (click)="onLogout()">Logout</ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
+</ion-content>

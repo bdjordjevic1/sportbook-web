@@ -1,0 +1,15 @@
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="events" routerLinkActive #timer="routerLinkActive">
+      <ion-icon name="{{timer.isActive === true ? 'timer' : 'timer-outline'}}" color="tertiary"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button tab="create" routerLinkActive #people="routerLinkActive">
+      <ion-icon name="{{people.isActive === true ? 'people' : 'people-outline'}}" color="tertiary"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab3" routerLinkActive #paperPlane="routerLinkActive">
+      <ion-icon name="{{paperPlane.isActive === true ? 'paper-plane' : 'paper-plane-outline'}}" color="tertiary"></ion-icon>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

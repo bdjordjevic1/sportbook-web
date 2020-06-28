@@ -1,0 +1,7 @@
+<ng-container *ngIf="(notifications$ | async) as notifications">
+    <ng-container *ngFor="let notification of notifications">
+        <div class="alert alert-{{notification.type}} sb-alert" role="alert" (click)="removeNotification(notification)">
+            {{notification.message}}<ion-icon name="close-outline"></ion-icon>
+        </div>
+    </ng-container>
+</ng-container>

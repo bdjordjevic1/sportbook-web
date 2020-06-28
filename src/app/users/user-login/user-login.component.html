@@ -1,12 +1,4 @@
-<div class="alert alert-success sb-alert" role="alert" *ngIf="isSignUpSuccessful$ | async">
-    Sign up was successful! Please login with you credentials.
-</div>
-<div class="alert alert-warning sb-alert" role="alert" *ngIf="isSessionExpired$ | async">
-    Your session has expired! Please login again.
-</div>
-<div class="alert alert-danger sb-alert" role="alert" *ngIf="errorMessage">
-    {{errorMessage}}
-</div>
+<app-notification-container></app-notification-container>
 <ion-content class="login">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <ion-grid>

@@ -1,0 +1,18 @@
+[
+  {
+    "key": "session.expired",
+    "message": "Your session has expired! Please login again."
+  },
+  {
+    "key": "form.signUp.invalid",
+    "message": "Sign up form is not valid!"
+  },
+  {
+    "key": "form.signUp.success",
+    "message": "Sign up was successful! Please login with you credentials."
+  },
+  {
+    "key": "form.login.invalid",
+    "message": "Login form is not valid!"
+  }
+]

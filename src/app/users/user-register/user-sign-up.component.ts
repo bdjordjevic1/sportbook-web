@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from '../../shared/authentication/authentication.service';
 import { SignUpRequest } from '../../shared/authentication/dto/SignUpRequest';
 import { ApiResponse } from '../../shared/authentication/dto/ApiResponse';
+import { NotificationType } from '../../shared/notification/model/notification-type.enum';
+import { NotificationHandler } from '../../shared/notification/service/notification-handler.service';
 
 @Component({
   selector: 'app-user-register',
@@ -13,9 +15,12 @@ import { ApiResponse } from '../../shared/authentication/dto/ApiResponse';
 })
 export class UserSignUpComponent implements OnInit {
   signUpForm: FormGroup;
-  errorMessage: string;
 
-  constructor(private router: Router, private authService: AuthenticationService) {}
+  constructor(
+    private router: Router,
+    private authService: AuthenticationService,
+    private notificationHandler: NotificationHandler
+  ) {}
 
   ngOnInit() {
     this.signUpForm = new FormGroup({
@@ -36,18 +41,13 @@ export class UserSignUpComponent implements OnInit {
 
   onSubmit() {
     if (this.signUpForm.valid) {
-      this.authService.signUp(this.createSignUpRequest()).subscribe(
-        (response: ApiResponse) => {
-          this.authService.signUpSuccess();
-          this.router.navigate(['login']);
-        },
-        (error: HttpErrorResponse) => {
-          this.errorMessage = error.error.message;
-        }
-      );
+      this.authService.signUp(this.createSignUpRequest()).subscribe((response: ApiResponse) => {
+        this.authService.signUpSuccess();
+        this.router.navigate(['login']);
+      });
     } else {
       this.signUpForm.markAllAsTouched();
-      this.errorMessage = 'Sign up form is not valid';
+      this.notificationHandler.pushNotification('form.signUp.invalid', NotificationType.DANGER);
     }
   }
 

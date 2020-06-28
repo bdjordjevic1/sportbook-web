@@ -1,9 +1,10 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { AuthenticationService } from '../../shared/authentication/authentication.service';
+import { NotificationType } from '../../shared/notification/model/notification-type.enum';
+import { NotificationHandler } from '../../shared/notification/service/notification-handler.service';
 
 @Component({
   selector: 'app-user-login',
@@ -13,22 +14,22 @@ import { AuthenticationService } from '../../shared/authentication/authenticatio
 export class UserLoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
   subscription: Subscription;
-  isSignUpSuccessful$: Observable<boolean>;
-  isSessionExpired$: Observable<boolean>;
-  errorMessage: string;
 
-  constructor(private router: Router, private authenticationService: AuthenticationService) {}
+  constructor(
+    private router: Router,
+    private authenticationService: AuthenticationService,
+    private notificationHandler: NotificationHandler
+  ) {}
 
   ngOnInit() {
     this.loginForm = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required]),
     });
-    this.isSignUpSuccessful$ = this.authenticationService.isSignUpSuccessful;
-    this.isSessionExpired$ = this.authenticationService.isSessionExpired;
   }
 
   onSignUp() {
+    this.loginForm.reset();
     this.router.navigate(['sign-up']);
   }
 
@@ -36,17 +37,12 @@ export class UserLoginComponent implements OnInit, OnDestroy {
     if (this.loginForm.valid) {
       this.subscription = this.authenticationService
         .login(this.loginForm.value.email, this.loginForm.value.password)
-        .subscribe(
-          (loginResponse) => {
-            this.router.navigate(['events']);
-          },
-          (error: HttpErrorResponse) => {
-            this.errorMessage = error.error.message;
-          }
-        );
+        .subscribe((loginResponse) => {
+          this.router.navigate(['events']);
+        });
     } else {
       this.loginForm.markAllAsTouched();
-      console.error('Login form is not valid!');
+      this.notificationHandler.pushNotification('form.login.invalid', NotificationType.DANGER);
     }
   }
 

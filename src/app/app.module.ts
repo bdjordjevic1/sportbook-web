@@ -1,5 +1,5 @@
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { NgModule, OnInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -10,6 +10,8 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthInterceptorService } from './shared/authentication/auth-interceptor.service';
+import { ServerErrorInterceptor } from './shared/notification/error/interceptor/server-error.interceptor';
+import { NotificationMessageService } from './shared/notification/service/notification-message.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +22,7 @@ import { AuthInterceptorService } from './shared/authentication/auth-interceptor
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ServerErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

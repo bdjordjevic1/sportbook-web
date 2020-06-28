@@ -7,9 +7,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="register">
-  <div class="alert alert-danger sb-alert" role="alert" *ngIf="errorMessage">
-    {{errorMessage}}
-  </div>
+  <app-notification-container></app-notification-container>
   <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
     <ion-grid>
       <ion-row>

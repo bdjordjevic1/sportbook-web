@@ -12,11 +12,11 @@ import { ErrorMessageService } from '../service/error-message.service';
 export class SbErrorComponent implements OnInit {
   @Input() fieldName: string;
   @Input() field: AbstractControl;
-  validationMessages$: Observable<ValidationError>;
+  validationMessages: ValidationError;
 
   constructor(private errorMessageService: ErrorMessageService) {}
 
   ngOnInit() {
-    this.validationMessages$ = this.errorMessageService.getValidationMessages(this.fieldName);
+    this.validationMessages = this.errorMessageService.getValidationMessages(this.fieldName);
   }
 }
