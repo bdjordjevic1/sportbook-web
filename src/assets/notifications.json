@@ -14,5 +14,9 @@
   {
     "key": "form.login.invalid",
     "message": "Login form is not valid!"
+  },
+  {
+    "key": "resetPassword.emailSent",
+    "message": "Login form is not valid!"
   }
 ]

@@ -72,14 +72,12 @@
                     name="password"
                     type="password"
                     placeholder="Confirm password"
-                    formControlName="confirmPassword">
-            </ion-input>
+                    formControlName="confirmPassword"></ion-input>
           </ion-item>
           <app-sb-error
                   *ngIf="signUpForm.get('confirmPassword').invalid && signUpForm.get('confirmPassword').touched"
                   [field]="signUpForm.get('confirmPassword')"
-                  fieldName="confirmPassword">
-          </app-sb-error>
+                  fieldName="confirmPassword"></app-sb-error>
           <ion-button
                   class="ion-margin-top"
                   expand="full"

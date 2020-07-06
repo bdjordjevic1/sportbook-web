@@ -1,6 +1,6 @@
-<ion-tabs *ngIf="showTabs">
+<ion-tabs>
     <ion-tab-bar slot="bottom">
-        <ion-tab-button [routerLink]="['events']" routerLinkActive #timer="routerLinkActive">
+        <ion-tab-button [routerLink]="['events/my-events']" routerLinkActive #timer="routerLinkActive">
             <ion-icon name="{{timer.isActive === true ? 'timer' : 'timer-outline'}}" color="tertiary"></ion-icon>
         </ion-tab-button>
 

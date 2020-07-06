@@ -13,8 +13,6 @@ import { SignUpRequest } from './dto/SignUpRequest';
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   constructor(private http: HttpClient, private notificationHandler: NotificationHandler) {}
-  isSignUpSuccessful = new BehaviorSubject(false);
-  isSessionExpired = new BehaviorSubject(false);
 
   login(email: string, password: string) {
     return this.http
@@ -24,10 +22,6 @@ export class AuthenticationService {
 
   signUp(signUpRequest: SignUpRequest) {
     return this.http.post<ApiResponse>(`${environment.sportbookApiEndpoint}/auth/signup`, signUpRequest);
-  }
-
-  signUpSuccess() {
-    this.notificationHandler.pushNotification('form.signUp.success', NotificationType.SUCCESS);
   }
 
   setSession(loginResponse: AuthResponse) {

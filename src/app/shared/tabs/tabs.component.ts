@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Component, OnChanges, OnInit } from '@angular/core';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { ROUTES_WITHOUT_TABS } from '../constants/constants';
 
 @Component({
@@ -8,14 +8,16 @@ import { ROUTES_WITHOUT_TABS } from '../constants/constants';
   styleUrls: ['./tabs.component.scss'],
 })
 export class TabsComponent implements OnInit {
-  showTabs: boolean;
+  // TODO: Check if possible to hide it only for login/register/forgot-password
+  hideTabs = true;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.router.events.subscribe((routerEvent) => {
-      if (routerEvent instanceof NavigationEnd) {
-        this.showTabs = !ROUTES_WITHOUT_TABS.includes(routerEvent.url);
+      console.log(routerEvent);
+      if (routerEvent instanceof NavigationStart) {
+        this.hideTabs = ROUTES_WITHOUT_TABS.includes(routerEvent.url);
       }
     });
   }

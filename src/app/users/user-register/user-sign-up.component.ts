@@ -1,12 +1,13 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../shared/authentication/authentication.service';
 import { SignUpRequest } from '../../shared/authentication/dto/SignUpRequest';
 import { ApiResponse } from '../../shared/authentication/dto/ApiResponse';
 import { NotificationType } from '../../shared/notification/model/notification-type.enum';
 import { NotificationHandler } from '../../shared/notification/service/notification-handler.service';
+import CustomValidators from '../../shared/util/custom-validators.util';
 
 @Component({
   selector: 'app-user-register',
@@ -19,7 +20,8 @@ export class UserSignUpComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthenticationService,
-    private notificationHandler: NotificationHandler
+    private notificationHandler: NotificationHandler,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
@@ -28,21 +30,14 @@ export class UserSignUpComponent implements OnInit {
       lastName: new FormControl(null, [Validators.required]),
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required]),
-      confirmPassword: new FormControl(null, [Validators.required, this.matchingPasswords.bind(this)]),
+      confirmPassword: new FormControl(null, [Validators.required, CustomValidators.matchingPasswords]),
     });
-  }
-
-  matchingPasswords(control: FormControl) {
-    if (this.signUpForm !== undefined && control.value !== this.signUpForm.get('password').value) {
-      return { matchingPasswords: true };
-    }
-    return;
   }
 
   onSubmit() {
     if (this.signUpForm.valid) {
       this.authService.signUp(this.createSignUpRequest()).subscribe((response: ApiResponse) => {
-        this.authService.signUpSuccess();
+        this.notificationHandler.pushNotification('form.signUp.success', NotificationType.SUCCESS);
         this.router.navigate(['login']);
       });
     } else {

@@ -25,8 +25,10 @@ export class NotificationHandler {
   }
 
   removeAllNotifications() {
-    this.notifications = [];
-    this.notifications$.next(this.notifications);
+    if (this.notifications.length > 0) {
+      this.notifications = [];
+      this.notifications$.next(this.notifications);
+    }
   }
 
   _alreadyPushed(notification: NotificationWrapper) {

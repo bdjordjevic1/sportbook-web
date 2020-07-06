@@ -5,12 +5,20 @@ import { AuthGuardService } from './shared/authentication/auth-guard.service';
 const routes: Routes = [
   {
     path: 'events',
-    loadChildren: () => import('./events/events.module').then((m) => m.EventsModule),
+    loadChildren: () =>
+      import('./events/events.module').then((m) => {
+        console.log('Loading events module');
+        return m.EventsModule;
+      }),
     canActivate: [AuthGuardService],
   },
   {
     path: '',
-    loadChildren: () => import('./users/users.module').then((m) => m.UsersModule),
+    loadChildren: () =>
+      import('./users/users.module').then((m) => {
+        console.log('Loading users module');
+        return m.UsersModule;
+      }),
   },
 ];
 @NgModule({
