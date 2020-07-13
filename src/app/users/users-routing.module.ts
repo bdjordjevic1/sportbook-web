@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'sign-up', component: UserSignUpComponent },
   { path: 'forgot-password', component: UserForgotPasswordComponent },
   { path: 'change-password', component: ChangePasswordComponent },
-  { path: 'account', component: UserAccountComponent },
+  { path: 'account', component: UserAccountComponent, runGuardsAndResolvers: 'always' },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
 

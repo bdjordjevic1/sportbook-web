@@ -1035,6 +1035,13 @@
   dependencies:
     "@types/cordova" latest
 
+"@ionic-native/file-transfer@^5.27.0":
+  version "5.27.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/file-transfer/-/file-transfer-5.27.0.tgz#ca2d88cfbacad817a1c7e581e2c936564348f515"
+  integrity sha512-gyjf45hw4B57zNSrxf48yLRQPX6b/Nf/P2IXGM+ijRwcwk4LxOIuwQuYAyGXmDLwLCAfmICWixziYak43KklOQ==
+  dependencies:
+    "@types/cordova" latest
+
 "@ionic-native/splash-screen@^5.0.0":
   version "5.26.0"
   resolved "https://registry.yarnpkg.com/@ionic-native/splash-screen/-/splash-screen-5.26.0.tgz#4dde62ae9067f5b4862bf3fa6f6b0bafbbad850b"
@@ -2653,6 +2660,11 @@ copy-webpack-plugin@5.1.1:
     schema-utils "^1.0.0"
     serialize-javascript "^2.1.2"
     webpack-log "^2.0.0"
+
+cordova-plugin-file-transfer@^1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-file-transfer/-/cordova-plugin-file-transfer-1.7.1.tgz#a75d8be2ebc3bb9b23c5b1bbd199214ec267586b"
+  integrity sha1-p12L4uvDu5sjxbG70ZkhTsJnWGs=
 
 core-js-compat@^3.6.2:
   version "3.6.5"

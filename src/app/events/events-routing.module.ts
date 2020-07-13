@@ -5,17 +5,7 @@ import { EventAddComponent } from './event-add/event-add.component';
 import { EventsListComponent } from './events-list/events-list.component';
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   component: EventsTabComponent,
-  //   children: [
-  //     { path: '', component: EventsListComponent },
-  //     { path: 'create', component: EventAddComponent },
-  //     { path: 'add-teammates', component: AddTeammatesComponent },
-  //   ],
-  //   canActivate: [AuthGuardService],
-  // },
-  { path: 'my-events', component: EventsListComponent },
+  { path: '', component: EventsListComponent },
   { path: 'create', component: EventAddComponent },
   { path: 'add-teammates', component: AddTeammatesComponent },
 ];

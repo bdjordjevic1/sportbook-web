@@ -4,15 +4,21 @@
     </ion-toolbar>
 </ion-header>
 <app-notification-container></app-notification-container>
-<ion-content class="account">
+<ion-content class="account" *ngIf="currentUser">
     <div class="profile-picture text-center">
-        <img src="https://static01.nyt.com/images/2020/05/16/business/16JORDAN-01sub/16JORDAN-01sub-mediumSquareAt3X.jpg"
+        <img [src]="profilePicture"
              alt="Jordan stares"
-             class="img-fluid rounded-circle"
-             width="50%">
+             class="img-fluid rounded-circle">
     </div>
     <div class="text-center">
-      <a href="#">Change profile picture</a>
+        <span (click)="fileInput.click()">Change profile picture</span>
+        <input type="file"
+               class="custom-file-input"
+               id="customFile"
+               (change)="changeProfilePicture($event)"
+               accept="image/png, image/jpeg"
+               #fileInput>
+        <ion-spinner name="lines" *ngIf="isLoading"></ion-spinner>
     </div>
     <form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
         <ion-grid>

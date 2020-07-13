@@ -3,8 +3,23 @@ div.profile-picture {
     padding-bottom: 10px;
 }
 
-a {
+span {
+    cursor:pointer;
     color: #008080;
+}
+
+span:hover {
+    text-decoration:underline;
+}
+
+img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.custom-file-input {
+    display: none;
 }
 
 .sb-alert {

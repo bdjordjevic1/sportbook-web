@@ -38,7 +38,7 @@ export class UserLoginComponent implements OnInit, OnDestroy {
       this.subscription = this.authenticationService
         .login(this.loginForm.value.email, this.loginForm.value.password)
         .subscribe((loginResponse) => {
-          this.router.navigate(['events/my-events']);
+          this.router.navigate(['events']);
         });
     } else {
       this.loginForm.markAllAsTouched();
